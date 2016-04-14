@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" ng-app="app">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ProjectPie</title>
+    <!-- Bootstrap  -->
+    <!-- Latest compiled and minified CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    
+    <!--   main style ---->
+    <link href="page.css" rel="stylesheet">
+ 
+    <!-- Javscript script  -->
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://s3-ap-southeast-1.amazonaws.com/naveensingh/posts_data/ckeditor_example/ng-ckeditor.min.js"></script>
+   
+
+    <!-- Fix for old browsers -->
+    <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+    <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+    
+    
+   <!-- upload libs -->
+    <script src="http://nervgh.github.io/pages/angular-file-upload/dist/angular-file-upload.min.js"></script>
+
+    <script src="page.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+    <body ng-controller="AppController" nv-file-drop="" uploader="uploader">
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"><img class="logo" src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/1004496_961876710568928_712847048769029945_n.jpg?oh=ee755ff2afecd29d8da3d561c64758a8&oe=574A5E8A" /></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="" href="#about">Start</a>
+                    </li>
+                    <li>
+                        <a class="" href="#services">Explore</a>
+                    </li>
+                    <li class="">
+                        <div class="divider"></div>
+                    </li>
+                    <li class="separate">
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control form-control-no-border" placeholder="Search projects on boards..." />
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="menud">
+                        <img class="imag" id="" src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xla1/v/t1.0-9/10006959_961876690568930_6875623136697414472_n.jpg?oh=0ded2985c9dc01cab1c9addd9951111d&oe=5786D6A4" />
+                    </li>
+                    <li>
+                        <img class="imag" id="" src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/10176263_961876697235596_8594974448285366568_n.jpg?oh=27f44ad62213e28f385f21a2bf3e07d6&oe=57552827" />
+                    </li>
+                    <li class="">
+                        <div class="divider"></div>
+                    </li>
+                    <li>
+                        <div class="inner-addons right-addons">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                            <img class="img-circle navspac" src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xlt1/v/t1.0-9/12400801_928034080619858_995150038115178487_n.jpg?oh=2885cd3306b8a860948aa02db63f9fad&oe=578C3268" />
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- genral Section -->
+        <section id="intro" class="general-section" ng-controller='AppController as panel'>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h2 class="h2">Bring your social idea to life!</h2>
+                    <h4 class="h3">Start by adding some general information about your project </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="subnav">
+
+                        <div class="btn-group marright" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(1) }"  ng-click="panel.selectTab(1)">General</button>
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(2) }"  ng-click="panel.selectTab(2)">Story</button>
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(3) }"  ng-click="panel.selectTab(3)">Volunteers</button>
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(4) }"  ng-click="panel.selectTab(4)">Funds</button>
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(5) }"  ng-click="panel.selectTab(5); saveProject()" ng-disabled="form.$invalid" >Perk</button>
+                            <button type="button" class="btn btn-default"  ng-class="{activa: panel.isSelected(6) }"  ng-click="panel.selectTab(6)">About you</button>
+
+                        </div>
+
+                        <button type="button" class="btn btn-default   "  ng-class="{activa: panel.isSelected(7) }"  ng-click="panel.selectTab(7)">Preview</button>
+                        <button type="button" class="btn btn-default   "  ng-class="{activa: panel.isSelected(8) }"  ng-click="panel.selectTab(8)">Submit for review</button>
+
+
+                    </div>
+				
+			      
+
+                </div>
+            </div>
+        </div>
+    
+        <div class="container" ng-show='panel.isSelected(1)'>
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-9">
+
+
+    
+				 
+
+                    <form name="form" class="css-form" novalidate required="" ng-submit="saveProject()">
+				     
+					 
+                        <div class="greybox">
+					  
+                            <h3 class="text-align-left"> Project title <span class="ss-required-asterisk" aria-hidden="true">*</span></h3>
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="project.title" ng-trim="false" maxlength="64" ng-required="true" placeholder="" required/> <span class="input-group-addon texts">({{64 - project.title.length}}/64)</span> </div>
+                            <p class="small">Your project title is the first impression you make. Keep it simple, and make it specific andeasy to remember. Make sure to use relevant key words in your title, to make your project is easy to find. You will not be able to change the project title once your project is launched.</p>
+					   
+					   <i ng-show="form.project.title.$invalid" class="small red">Project title is required</i>
+                        </div>
+
+                        <div class="greybox">
+                            <h3 class="text-align-left"> Short blurd <span class="ss-required-asterisk" aria-hidden="true">*</span></h3>
+                            <div class="input-group white">
+                                <textarea name="styled-textarea" id="styled" ng-model="project.short_blurd" ng-trim="false" maxlength="142" ng-required="true" required></textarea><span class="input-group-addon style">({{142 - project.short_blurd.length}}/142)</span> </div>
+                            <p class="small">If you had to explain what your social project is about in one tweet, how would you do it?</p>
+					   
+					   <p ng-show="form.project.short_blurd.$invalid" class="small red">Project Short blurd  is required</p>
+                        </div>
+
+
+                        <div class="greybox">
+                            <h3 class="text-align-left"> Project image <span class="ss-required-asterisk" aria-hidden="true">*</span></h3>
+
+
+                            <div class="up-buttons" ng-show="uploader.isHTML5">
+                                <div class="drop-box " nv-file-over="" uploader="uploader">
+                                    <div>
+                                        <input type="file" nv-file-select="" uploader="uploader" class="input grey custom-file-input" ng-required="true" required/>
+                                    </div>
+                                    <span class="grey"><br>JPEG, PNG or GIF Only<br>Preferred size 1024x768 px <br>
+                Cannot exceed 2 MB</span>
+                                </div>
+
+
+
+                            </div>
+					    <input type="hidden" ng-model="project.id" value="{{project.id}}">
+                            <p class="small">You know what the say: 'a picture says more than a thousand words.' Make it count!</p>
+
+
+
+
+
+                        </div>
+
+
+                        <div class="greybox">
+                            <h3 class="text-align-left"> Project location <span class="ss-required-asterisk" aria-hidden="true">*</span></h3>
+
+
+
+                            <div class="" style="padding-bottom:7px">
+                                <div class="labl lablco">Country</div>
+                                <div class="selectc">
+
+                                    <input class="form-control countries " type="text" list="countries"  name="country" ng-disabled="wproject" ng-checked="wproject && 0" ng-model="project.country"/>
+                                    <datalist id="countries">
+                                        
+    							
+    							 	
+    								<option ng-repeat=" item in countries " ng-model="project.country" value="{{item.country_name}}">{{item.country_name}}</option>
+								
+							
+    						
+							 
+                                    </datalist>
+							
+							 
+                                </div>
+
+
+                            </div>
+
+                            <div class="">
+                                <label class="labl lablc">City</label>
+                                <div class="inputcity">
+                                    <input type="text" ng-model="project.city" class="form-control" ng-disabled="wproject" ng-checked="wproject && 0" >
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <div class="smaltext">
+
+                                <p class="text-center">
+                                    <input ng-model="wproject" type="checkbox" id="wproject" ng-model="wproject" ng-change=" project.country = wproject ? '' : project.country;project.city = wproject ? '' : project.city " />
+                                    <label for="wproject" class="wdp">This is a worldwide project</label>
+                                </p>
+ 						 
+
+                            </div>
+                            <p class="small">Select what region of the world you'll be impacting. If people can join your project no matter where they are in the world, tick the 'Worldwide' checkbox.</p>
+					    <p ng-show="form.wproject.$invalid && form.project.country.$invalid" class="small red">One of this field is required</p>
+                        </div>
+
+                        <div class="greybox wdp">
+                            <h3 class="text-align-left"> Categories <span class="ss-required-asterisk" aria-hidden="true">*</span></h3>
+
+                            <p class="">You can select up to 3 categories</p>
+                            <p ng-repeat="elem in data">
+                                <span style="float:right;width:50%" >
+                                    <input ng-disabled="selected() > 2 && !elem.checked" ng-model="elem.checked" type="checkbox"  ng-checked="elem.checked"
+                                           id="{{elem.id}}"  />
+                                    <label for="{{elem.id}}">{{elem.id}}</label>
+                                </span>
+						 
+                            </p>
+					  <p ng-show="form.elem.checked.$invalid" class="small red">One of this field is required</p>
+
+                            <div class="container clearfix"></div>
+
+                        </div>
+
+
+
+<!---- end general div -->
+                        <div class="container clearfix"></div>
+                        <br>
+                        <div class="form-inline " style="float:right">
+ 
+                            <button type="submit" class="titleb btn btn-success   " ng-disabled="form.$invalid">Save Draft</button>
+                            <button style="" type="button" class="titleb btn btn-primary  " ng-click="panel.selectTab(5);saveProject();" ng-disabled="form.$invalid">Next</button>
+                        </div>
+                        <div class="container clearfix"></div>
+                        <div class="" style="float:right"><a href="" class="red" ng-click="deleteProject()" ng-disabled="form.$invalid"><i class="glyphicon glyphicon-remove" ></i> Delete project</a></div>
+
+
+                    </form>
+                </div>
+<!-- start row col-xs-5 col-md-3 left side-->
+                <div class="col-xs-5 col-md-3">
+                    <div class="col-xs-5 col-lg-3">
+                        <div id="sidebar" class="nav nav-stacked row  marg" style="width:221px">
+                            <div class="thumbnail" style="    width: 221px;">
+                                <img src="{{project.picture}}" ng-if="uploader.queue.length == 0 "/>
+
+
+
+
+                                <ul ng-repeat="item in uploader.queue">
+
+
+
+                                    <li>
+
+                                        <!-- Image preview -->
+
+                                        <!--auto width-->
+
+                                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, width: 221, height: 157 }"></div>
+                                        <b class="small" ng-click="item.remove()">
+                                            <i class="glyphicon glyphicon-trash"></i> Remove |
+                                        </b>
+
+								<b  class="small" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+								                                        <i class="glyphicon glyphicon-upload"></i> Upload
+								                                    </b>
+
+
+
+
+
+                                    </li>
+                                </ul>
+                                <div class="caption">
+                                    <div>
+                                        <p class="fontsize overflowting" >{{project.title}}</p>
+                                        <p class="" style="">By Roger Mekeidje</p>
+
+                                        <p class="overflowting">{{project.short_blurd}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- end row on the left side -->
+	  <!--- Perk tap section -->
+        <div class="container" ng-show='panel.isSelected(5)'>
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-9">
+                    <!--<div class="col-md-8" >-->
+                    <div class="greybox">
+
+                        <p class="titleh3 adjusted">What perks do you grant for project sponcors?</p>
+                        <p class="adjusted">write a full description for every perk in your project. You can add as many perks as needed in your project. Get creative!</p>
+                        <div class="panel-group"  id="accordio">
+
+                            <div class="unstyled" ng-init="start = 0">
+                                <div ng-repeat="perk in perks" ng-init="current = $parent.start; $parent.start=$parent.start+1;">
+		                              <div class="addperk">
+		                                  <p class="apanel-heading titleh2 adjusted " ><a class=" title accordion-toggle" data-toggle="collapse" data-parent="#accordio" href="#collapseAddPerk{{current }}"><i class="indicator glyphicon glyphicon-chevron-right"></i> {{perk.pTitle}} {{perk.title}}</a></p>
+		                                  <div class="e panel-collapse collapse" id="collapseAddPerk{{current }}">
+		                                      <div class="form-horizontal">
+		                                          <div class="form-group form-group-md">
+		                                              <label class="col-md-4 control-label text-align-left labl" for="formGroupInputLarge">Perk title<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+		                                              <div class="col-md-5">
+		                                                  <input class="selectpicker form-control " type="text" id="formGroupInputLarge" placeholder="{{perk.pTitle}}" ng-model="perk.title" value="{{perk.title}}" required>
+		                                                 
+		                                              </div>
+
+
+		                                          </div>
+
+		                                          <div class="form-group form-group-md">
+		                                              <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Cost<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+		                                              <div class="col-md-2">
+
+		                                                  <input class="form-control" id="formGroupInputSmall" type='number' ng-model='perk.cost' placeholder="{{perk.cost}}" value="{{perk.cost}}" ng-maxlength='10000000' ng-minlength='0' min="0" max="10000000" required>
+
+
+
+		                                              </div>
+
+		                                          </div>
+		                                          <div class="form-group form-group-md">
+		                                              <label class="col-md-4 control-label text-align-left labl" for="formGroupInputLarge">Perk delivery<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+		                                              <div class="col-md-5">
+		                                                      <input class="form-control countries " type="text" list="pdelivery" id="repeatSelect" placeholder="{{perk.delivery}}" value="{{perk.delivery}}" ng-model="perk.delivery" name="pdelivery" ng-disabled="" ng-checked="" required/>
+		                                                      <datalist id="pdelivery">
+		                                                          <option value="Before project">Before project</option>
+		                                                          <option value="During project">During project</option>
+		                                                          <option value="After project">After project</option>
+		                                                      </datalist>
+		                                                  
+		                                              </div>
+		                                          </div>
+		                                          <div ng-hide="perk.delivery" class="form-group form-group-md" id="">
+		                                              <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Delivery date<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+		                                              <div class="col-md-2">
+		                                                  <input class="form-control" id="formGroupInputSmall" type='number' ng-model='perk.deliverydate' placeholder="delivery date" value="perk.deliverydate" ng-maxlength='366' ng-minlength='0' min="0" max="366" required>
+
+		                                              </div>
+		                                              <p class=" col-md-4 text-left small" for="formGroupInputSmall">week(s) after project</p>
+		                                          </div>
+
+
+
+
+		                                          <div class="form-group form-group-md">
+		                                              <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Perk Description<span class="ss-required-asterisk" aria-hidden="true">*</span></label><br>
+
+		                                              <div style="margin-left:1px" class="col-md-12 form-group form-group-md">
+
+		                                                  <textarea  class="col-md-4"  ckeditor="editorOptions" ng-model="perk.description" required> {{perk.description}}</textarea>
+
+
+
+
+		                                              </div>
+
+		                                              <div class="" style="float:right;margin-right:15px">
+		                                                  
+											
+									               <a class="red" ng-click="deletePerk(perk)"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+									               
+									      
+												
+											</div>
+		                                              </div>
+
+		                                          </div>
+
+
+
+
+
+
+		                                  </div>
+		                              </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="addperk">
+                                <p class="apanel-heading titleh2 adjusted " ><a class=" title accordion-toggle" data-toggle="collapse" data-parent="#accordio" href="#collapseAddPerk"><i class="indicator glyphicon glyphicon-chevron-down"></i> Add New Perk</a></p>
+                                <div class="e panel-collapse collapse in " id="collapseAddPerk">
+                                    <form class="form-horizontal" ng-submit="addPerk()">
+                                        <div class="form-group form-group-md">
+                                            <label class="col-md-4 control-label text-align-left labl" for="formGroupInputLarge">Perk title<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+                                            <div class="col-md-5">
+                                                <input class="selectpicker form-control" type="text" id="formGroupInputLarge" placeholder="" ng-model="pTitle" required>
+                                                <p class="small">Your perk titles should be descriptive.</p>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="form-group form-group-md">
+                                            <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Cost<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+                                            <div class="col-md-2">
+
+                                                <input class="form-control" id="formGroupInputSmall" type='number' ng-model='pCost' ng-maxlength='100' ng-minlength='0' min="0" max="10000000" required>
+
+
+
+                                            </div>
+
+
+
+                                            <p class="col-md-4 small">How much do you need to spend to provide this perk. Yourperk cost will automatically be included in your funds breakdown.</p>
+                                        </div>
+                                        <div class="form-group form-group-md">
+                                            <label class="col-md-4 control-label text-align-left labl" for="formGroupInputLarge">Perk delivery<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+                                            <div class="col-md-5">
+                                                    <input class="form-control countries " type="text" list="pdelivery" id="repeatSelect" ng-model="pdelivery" name="pdelivery" ng-disabled="" ng-checked="" required/>
+                                                    <datalist id="pdelivery">
+                                                        <option value="Before project">Before project</option>
+                                                        <option value="During project">During project</option>
+                                                        <option value="After project">After project</option>
+                                                    </datalist>
+                                                <p class="small">Make a realistic estimation of delivery of this perk.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-md" id="">
+                                            <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Delivery date<span class="ss-required-asterisk" aria-hidden="true">*</span></label>
+                                            <div class="col-md-2">
+                                                <input class="form-control" id="formGroupInputSmall" type='number' ng-model='pdeliverydate' ng-maxlength='366' ng-minlength='0' min="0" max="366" required>
+
+                                            </div>
+                                            <p class=" col-md-4 text-left small" for="formGroupInputSmall">week(s) after project</p>
+                                        </div>
+
+
+
+
+                                        <div class="form-group form-group-md">
+                                            <label class="col-md-4 control-label text-align-left labl" for="formGroupInputSmall">Perk Description<span class="ss-required-asterisk" aria-hidden="true">*</span></label><br>
+
+                                            <div style="margin-left:1px" class="col-md-12 form-group form-group-md">
+
+                                                <textarea class="col-md-4"  ckeditor="editorOptions" ng-model="p_description" required></textarea>
+
+
+                                                <p class="small">Give as many details as possible. The better you are able to describe the perks, the higher the chance of finding a corporate to sponsor your idea.</p>
+
+
+                                            </div>
+
+                                            <div class="" style="float:right;margin-right:15px">
+                                                <button type="submit"  class="titleb btn btn-success">Add Perk</button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                    <div class="container clearfix"></div>
+                    <br>
+                    <div class="form-inline " style="float:right">
+
+                        <button type="submit" class="titleb btn btn-success   " >Save Draft</button>
+                        <button style="" type="button" class="titleb btn btn-primary  " ng-click="panel.selectTab(1)">Next</button>
+                    </div>
+                    <div class="container clearfix"></div>
+                    <div class="" style="float:right"><a href="" class="red" ng-click="deleteProject()"><i class="glyphicon glyphicon-remove"></i> Delete project</a></div>
+
+
+                </div>
+
+                <div class="col-xs-5 col-md-3" id="leftCol">
+                    <!--<div class="col-md-4" id="leftCol">-->
+
+                    <div class="nav nav-stacked" id="sidebar">
+                        <div class="panel-group" id="accordion">
+                            <div class="apanel apanel-default">
+                                <p class="apanel-heading  " >
+                                    <a class="titleb linkinacc accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="indicator glyphicon glyphicon-chevron-right"></i>
+                                        What is a Perk</a></p>
+                                <div id="collapseOne"  class="panel-collapse collapse" >
+                                    <p class=""> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                            </div>
+                            <div class="apanel apanel-default">
+                                <p class="apanel-heading  " >
+                                    <a class=" linkinacc accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="indicator glyphicon glyphicon-chevron-right"></i>
+                                        How can i see the progress of my project</a></p>
+                                <div id="collapseTwo"  class="panel-collapse collapse" >
+                                    <p class=""> Adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                            </div><div class="apanel apanel-default">
+                            <p class="apanel-heading  " >
+                                <a class=" linkinacc accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="indicator glyphicon glyphicon-chevron-right"></i>
+                                    What can other see about my contribution</a></p>
+                            <div id="collapseThree"  class="panel-collapse collapse" >
+                                <p class=""> Ddolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            </div><div class="apanel apanel-default">
+                            <p class="apanel-heading  " >
+                                <a class=" linkinacc accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><i class="indicator glyphicon glyphicon-chevron-right"></i>
+                                    Do i get rewarded for contributin</a></p>
+                            <div id="collapseFour"  class="panel-collapse collapse" >
+                                <p class="">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            </div><div class="apanel apanel-default">
+                            <p class="apanel-heading  " >
+                                <a class=" linkinacc accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><i class="indicator glyphicon glyphicon-chevron-right"></i>
+                                    Can i fund now and become a volunteer later</a></p>
+                            <div id="collapseFive"  class="panel-collapse collapse" >
+                                <p class=""> Ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo Cconsequat.</p>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end perk div -->
+	   
+	   <div class="container">
+	      <div   ng-show="showMessageSave" class="ccalert alert alert-success fade in" >
+	         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	         <strong>Save Successfull!</strong> 
+	     </div>
+
+	 	<div  ng-show="howMessageError" class="ccalert alert alert-danger fade in" >
+	     	 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	     		<strong>Validation error!</strong> 
+	 	</div>
+	   </div>
+    </section>
+    
+    
+  
+
+    <div class="container clearfix"></div>
+
+    <footer>
+        <ul class="container clearfix">
+        </ul>
+    </footer>
+    <!-- Footer  -->
+
+
+    <div id="wrapper">
+        <div id="footer">
+            <div class="footerFloat">
+                <h4 class="one">Join us</h4>
+                <p>
+                    <a href=""><img src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1931438_961876670568932_5263863025078414956_n.jpg?oh=779d1e6e119e1b0a73cdaff72d5fcd0e&oe=575ACC05" class="img-rounded"></a>
+                    <a href="">
+                        <img src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xlp1/v/t1.0-9/10370819_961876677235598_6704038403907929126_n.jpg?oh=bb2676e2cdde740cc3ca169b4acbe478&oe=5785850F" class="img-rounded"></a>
+                    <a href=""><img src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/11885209_961876657235600_3533567798626286181_n.jpg?oh=281a0aefa1ae447ba7972499dcc26339&oe=57576671" class="img-rounded"></a>
+                    <a href="">
+                        <img src="https://scontent-mrs1-1.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/12832331_961876660568933_2679652297110131227_n.jpg?oh=3ec1a5b7b1990a1a31d6bc79b3009385&oe=574CF085" class="img-rounded"></a>
+                </p>
+
+            </div>
+            <div class="footerFloat">
+                <h4 class="one">Get involved</h4>
+                <ul class="ul list-unstyled">
+                    <li id="" class=""> <a href="" class="">How it works</a></li>
+                    <li id="" class="">
+                        <a href="" class="">Start a project</a></li>
+                    <li id="" class="">
+                        <a href="" class="">Explore projects</a></li>
+                    <li id="" class=""><a href="" class="">Volunteers</a></li>
+                    <li id="" class=""><a href="" class="">Join a project</a></li>
+                </ul>
+            </div>
+            <div class="footerFloat">
+                <h4 class="one">Community &amp; Support</h4>
+                <ul class="ul list-unstyled">
+                    <li id="" class="">
+                        <a href="">Contact us</a>
+                    </li>
+                    <li id="" class="">
+                        <a href="">terms &amp; Conditions</a></li>
+                    <li id="" class="">
+                        <a href="">Privacy Policy</a></li>
+                </ul>
+
+
+            </div>
+            <div class="footerFloat">
+                <h4 class="one">Project PIE: People Impacting Everyone</h4>
+                <p class="ul">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoesse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+                </p>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <!-- end footer -->
+    
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>
